@@ -29,3 +29,19 @@ async function getResponse(path) {
 
     return response;
 }
+// Get all characters
+async function getPeople(){
+    const people = [];
+    let URL = 'https://swapi.co/api/people/';
+    while(URL !== null){
+        const response = await getResponse(URL);
+        people.push(...response.results);
+        URL = response.next
+    }
+    return people;
+}
+// Geet one specific character
+async function getCharacter(URL){
+    let character = await getResponse(URL);
+    return character; 
+}
