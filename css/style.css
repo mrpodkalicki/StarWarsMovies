@@ -1,0 +1,8 @@
+.movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    min-height: 500px;
+    background-color: #C4C4C4;
+    margin: auto;
+}
