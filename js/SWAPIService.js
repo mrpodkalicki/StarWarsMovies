@@ -1,5 +1,3 @@
-
-
 //Get movies and push into array
 async function getFilms(){
     const movies = [];
@@ -107,5 +105,19 @@ async function getFilm(url){
     let movie = await getResponse(url);
     return movie; 
 }
-
-
+// Get all vehicles
+async function getVehicles(){
+    const vehicles = [];
+    let URL = 'https://swapi.co/api/vehicles/';
+    while(URL !== null){
+        const response = await getResponse(URL);
+        vehicles.push(...response.results);
+        URL = response.next;
+    }
+    return vehicles;
+}
+// Get one specific vehicle
+async function getVehicle(URL){
+    let vehicle = await getResponse(URL);
+    return vehicle; 
+}
