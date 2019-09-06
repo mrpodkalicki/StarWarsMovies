@@ -1,0 +1,27 @@
+{
+  "name": "starwarsmovies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "UILayer.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cc-team-delta/StarWarsMovies.git"
+  },
+  "author": "CodersCamp_TeamDelta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cc-team-delta/StarWarsMovies/issues"
+  },
+  "homepage": "https://github.com/cc-team-delta/StarWarsMovies#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
