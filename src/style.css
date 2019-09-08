@@ -1,11 +1,46 @@
+body {
+    background-image: url("space-1164579.png");
+}
+
 .movies-list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 80%;
+    width: 90%;
     min-height: 500px;
-    background-color: #C4C4C4;
+    background-color: rgba(200, 200, 200, 0.1);
+    padding: 2%;
+    color: white;
     margin: auto;
-    opacity: 0.1;
+}
+
+.movieElem {
+    border-radius: 5px;
+    transition: all .2s;
+}
+
+.movieElem:hover {
+    background-color: rgba(200, 200, 200, 0.2)
+}
+
+.title {
+    text-align: center;
+    padding: 5px;
+    border-bottom: #999 solid 2px;
+    color: rgb(199, 186, 0);
+}
+
+.info {
+    margin: 10px;
+}
+
+.info :first-child {
+    color: red;
+}
+
+.producer {
+    text-align: right;
+}
+
+.view {
+    width: 100%;
 }
 
 .movie-search-input {
@@ -69,7 +104,7 @@
     min-height: 150px;
     margin-top: 5%;
     margin-bottom: 5%;
-    
+
 }
 
 .search-panel-img {

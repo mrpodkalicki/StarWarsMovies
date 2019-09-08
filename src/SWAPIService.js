@@ -1,8 +1,11 @@
+export { getFilms, getFilm, SearchingMovies, getPlanets, getPlanet, getPeople, getCharacter, getVehicles, getVehicle, getStarship, getStarships };
+
+
 //Get movies and push into array
-async function getFilms(){
+async function getFilms() {
     const movies = [];
     let url = "https://swapi.co/api/films/";
-    while(url !== null){
+    while (url !== null) {
         const response = await getResponse(url);
         movies.push(...response.results);
         url = response.next;
@@ -10,35 +13,23 @@ async function getFilms(){
     return movies;
 }
 // Get single movie
-async function getFilm(url){
+async function getFilm(url) {
     let movie = await getResponse(url);
-    return movie; 
+    return movie;
 }
 
-
-async function  sendingRequest(moviesName){
+async function SearchingMovies(moviesName) {
     const url = "https://swapi.co/api/films/?search=";
-    const link = encodeURI(url + moviesName);
-        data =  await fetch(link, {
-             "method": "GET",
-             "headers": {
-             }
-         })
-         .then(response => response.json())
-         .then(response => {
-              const dataAboutMovies = response["results"][0] != undefined ? response["results"] : "Nothing findedd";
-              return dataAboutMovies
-         }).catch(err => {
-              return err
-         });
-         return data
-};
-async function SearchingMovies (moviesName) {
-    const response = await sendingRequest(moviesName);
-    console.log(response);
-    return response
-};
-const output= SearchingMovies(""); //return promise 
+    let link = encodeURI(url + moviesName);
+    const movies = [];
+    while (link !== null) {
+        const response = await getResponse(link);
+        movies.push(...response.results);
+        link = response.next;
+    }
+
+    return movies;
+}
 
 // Get all planets in SWAPI
 async function getPlanets() {
@@ -72,10 +63,10 @@ async function getResponse(path) {
     return response;
 }
 // Get all characters
-async function getPeople(){
+async function getPeople() {
     const people = [];
     let URL = 'https://swapi.co/api/people/';
-    while(URL !== null){
+    while (URL !== null) {
         const response = await getResponse(URL);
         people.push(...response.results);
         URL = response.next
@@ -83,33 +74,18 @@ async function getPeople(){
     return people;
 }
 // Geet one specific character
-async function getCharacter(URL){
+async function getCharacter(URL) {
     let character = await getResponse(URL);
-    return character; 
+    return character;
 }
 
 
-//Get movies and push into array
-async function getFilms(){
-    const movies = [];
-    let url = "https://swapi.co/api/films/";
-    while(url !== null){
-        const response = await getResponse(url);
-        movies.push(...response.results);
-        url = response.next;
-    }
-    return movies;
-}
-// Get single movie
-async function getFilm(url){
-    let movie = await getResponse(url);
-    return movie; 
-}
+
 // Get all vehicles
-async function getVehicles(){
+async function getVehicles() {
     const vehicles = [];
     let URL = 'https://swapi.co/api/vehicles/';
-    while(URL !== null){
+    while (URL !== null) {
         const response = await getResponse(URL);
         vehicles.push(...response.results);
         URL = response.next;
@@ -117,7 +93,24 @@ async function getVehicles(){
     return vehicles;
 }
 // Get one specific vehicle
-async function getVehicle(URL){
+async function getVehicle(URL) {
     let vehicle = await getResponse(URL);
-    return vehicle; 
+    return vehicle;
 }
+
+// Get all starships
+async function getStarships() {
+    const starships = [];
+    let URL = 'https://swapi.co/api/starships/';
+    while (URL !== null) {
+        const response = await getResponse(URL);
+        starships.push(...response.results);
+        URL = response.next;
+    }
+    return starships;
+}
+// Geet one specific starship
+async function getStarship(URL) {
+    let starship = await getResponse(URL);
+    return starship;
+} 
