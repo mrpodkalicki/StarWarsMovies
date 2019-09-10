@@ -1,62 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Star Wars Movie Search</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="src/style.css" type="text/css" />
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-        <script src="dist/bundle.js" defer></script>
-        <link href="https://fonts.googleapis.com/css?family=Lemonada|Ubuntu&display=swap" rel="stylesheet">
-        <script  type="module" src="src/UILayer.js" defer></script>
-    </head>
-    <body class="b-body">
-        <div class="b-body__content">
-            <header class="header">
-                <video autoplay muted loop class=" header__background--video">
-                    <source src="src/movie/Starfield_Fly_Through.mp4" type="video/mp4">
-                </video>
-                <div class="b-header__image b-header__image-first--back-img b-header__image-first--position">
-                </div>
-                <div class="b-header__image b-header__image-second--back-img b-header__image-second--position
-                        b-header__image-second--angel
-                        b-header__image-second--big-size">
-                </div>
-                <p class="header_caption-first">welcome to the</p>
-                <div class="b-header__caption-second">
-                    <div class="b-header__content-caption-second">
-                        <h1 class="b-header__content-caption-second__header">DARK</h1>
-                    </div>
-                    <div class="b-header__content-caption-second">
-                        <h1 class="b-header__content-caption-second__header">SIDE</h1>
-                    </div>
-                </div>
-                <p class="header__caption-third">find movie from saga star wars</p>
-              </header>
-              <section class="main-section">
-                  <article class="main-section__article main-section__content-input">
-                      <div class="search-panel">
-                          <input type="text" id="movie-input" class="movie-search-input" placeholder="Type here..." />
-                          <button id="movie-search" class="button-search"><img src="src/joda.png" class="button-img" />SEARCH</button>
-                          <img src="src/miecz_r.png" class="search-panel-img">
-                      </div>
-                <h1 class="main-section__content-input__caption-nothing-finded "></h1>
-                </article>
-                <article class="main-section__article main-section__content-items main-section__content-items--back-color">
-                     <div class="container-fluid">  
-                     </div>
-                </article>
-            </section>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Wars Movie Search</title>
+    <link rel="stylesheet" href="src/style.css" type="text/css"/>
+    <script src="dist/bundle.js" defer></script>
+</head>
+<body>
+    <div class="search-panel">
+        <input type="text" id="movie-input" class="movie-search-input" placeholder="Type here..."/>
+        <button id="movie-search" class="button-search"><img src="src/joda.png" class="button-img"/>SEARCH</button>
+        <img src="src/miecz_r.png" class="search-panel-img">
+    </div>
+    <div class="movies-list"></div>
+</body>
 </html>
