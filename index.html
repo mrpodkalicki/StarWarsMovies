@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Star Wars Movie Search</title>
-    <link rel="stylesheet" href="src/style.css" type="text/css"/>
-    <script src="dist/bundle.js" defer></script>
-</head>
-<body>
-    <div class="search-panel">
-        <input type="text" id="movie-input" class="movie-search-input" placeholder="Type here..."/>
-        <button id="movie-search" class="button-search"><img src="src/joda.png" class="button-img"/>SEARCH</button>
-        <img src="src/miecz_r.png" class="search-panel-img">
-    </div>
-    <div class="movies-list"></div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Star Wars Movie Search</title>
+        <link rel="stylesheet" href="src/style.css" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lemonada|Ubuntu&display=swap" rel="stylesheet">
+        <script src="dist/bundle.js" defer></script>
+        <script  type="module" src="src/UILayer.js" defer></script>
+    </head>
+    <body class="b-body">
+        <div class="b-body__content">
+            <header class="header">
+                <video autoplay muted loop class=" header__background--video">
+                    <source src="src/movie/Starfield_Fly_Through.mp4" type="video/mp4">
+                </video>
+                <div class="b-main__image b-main__image-first--back-img b-main__image-first--position">
+                </div>
+                <p class="header_caption-first">welcome to the</p>
+                <div class="b-header__caption-second">
+                    <div class="b-header__content-caption-second">
+                        <h1 class="b-header__content-caption-second__header">DARK</h1>
+                    </div>
+                    <div class="b-header__content-caption-second">
+                        <h1 class="b-header__content-caption-second__header">SIDE</h1>
+                    </div>
+                </div>
+                <p class="header__caption-third">find movie from saga star wars</p>
+            </header>
+            <section class="main-section">
+                <article class="main-section__article main-section__content-input">
+                    <div class="search-panel">
+                        <input type="text" id="movie-input" class="movie-search-input" placeholder="Type here..." />
+                        <button id="movie-search" class="button-search"><img src="src/images/joda.png"     class="button-img" />SEARCH</button>
+                        <img src="src/images/sword.png" class="search-panel-img">
+                    </div>
+                    <div class="b-main__image b-main__image-second--back-img b-main__image-second--position
+                        b-main__image-second--angel
+                        b-main__image-second--big-size">
+                    </div>
+                    <h1 class="main-section__content-input__caption-nothing-finded "></h1>
+                </article>
+                <article class="main-section__article main-section__content-items main-section__content-items--back-color">
+                    <div class="container-fluid">  
+                    </div>
+                </article>
+            </section>
+    </body>
 </html>
