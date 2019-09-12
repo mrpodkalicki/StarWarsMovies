@@ -89,3 +89,20 @@ async function getVehicle(URL){
     let vehicle = await getResponse(URL);
     return vehicle; 
 };
+
+// Get all starships
+async function getStarships(){
+    const starships = [];
+    let URL = 'https://swapi.co/api/starships/';
+    while(URL !== null){
+        const response = await getResponse(URL);
+        starships.push(...response.results);
+        URL = response.next;
+    }
+    return starships;
+};
+// Get one specific starship
+async function getStarship(URL){
+    let starship = await getResponse(URL);
+    return starship; 
+};
