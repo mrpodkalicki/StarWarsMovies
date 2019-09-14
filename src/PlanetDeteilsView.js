@@ -1,0 +1,5 @@
+export {generatePlanetDetailsView};
+
+function generatePlanetDetailsView(){
+    
+}

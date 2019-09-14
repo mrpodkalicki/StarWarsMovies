@@ -1,6 +1,9 @@
 // ******* UI Layer *********
 import { getFilms, getFilm, SearchingMovies, getPlanets, getPlanet, getPeople, getCharacter, getVehicles, getVehicle } from "./SWAPIService.js";
 import { generateElementsList } from "./elementsList.js";
+import {generateFilmDetailsView} from "./FilmDetailsView";
+
+export { insideMenu, render};
 
 // DOM nodes
 let DOMallElem = document.querySelector(".b-body__content");
@@ -59,11 +62,22 @@ const createMovieCard = (movie, classNamebackImange) => {
     card.appendChild(createCardContent("Director:", director, classNameDivDirector, directClassPheader, directClassPName));
     card.appendChild(createCardContent("Producer:", producer, classNameDivProducer, producerClassPheader, producerClassPName));
     card.appendChild(createCardContent("Realese Date:", realaseDate, classNameDivDate, dateClassPheader, dateClassPName));
+    card.addEventListener("click", () => generateFilmDetailsView(movie));
     return card
 };
 // UI functions
 let movies = [];
-function render() {
+async function render() {
+    const bodyContent = document.querySelector(".b-body__content");
+    bodyContent.style.display = "block";
+    const body = document.querySelector("body");
+    const view = document.querySelector(".view");
+    if(view){
+        body.removeChild(view);
+    }
+    if(movies.length==0){
+        movies = await getFilms();
+    }
     const classBackImage = ["card__background-first--image", "card__background-second--image", "card__background-third--image", "card__background-fourth--image", "card__background-fifth--image", "card__background-sixth--image"];
     const listCard = document.createElement("ul");
     listCard.className = "main-section__content-items__list__cards";
@@ -95,3 +109,42 @@ $searchButton.addEventListener("click", () => {
     });
 });
 
+function insideMenu(options) {
+    const body = document.querySelector("body");
+    const bodyContent = document.querySelector(".b-body__content");
+    bodyContent.style.display = "none";
+
+    let view = document.querySelector("view");
+    if(view){
+        body.removeChild(view);
+    }
+    view = document.createElement("section");
+    view.classList = "view container-fluid";
+    body.appendChild(view);
+
+    const nav = document.createElement("nav");
+    view.appendChild(nav);
+
+    const backButton = document.createElement("div");
+    backButton.classList = "backButton navElement";
+    backButton.innerHTML = "Back";
+    nav.appendChild(backButton);
+
+    const navMenu = document.createElement("div");
+    navMenu.id ="navMenu";
+    nav.appendChild(navMenu);
+
+    const main = document.createElement("div");
+    main.classList = "mainButton navElement"
+    main.innerHTML = "Main";
+    navMenu.appendChild(main);
+
+    options.forEach(option => {
+        const opt = document.createElement("div");
+        opt.classList = option + "Button navElement";
+        opt.innerHTML = option;
+        navMenu.appendChild(opt);
+    })
+}
+
+render();

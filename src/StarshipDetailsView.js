@@ -1,0 +1,5 @@
+export {generateStarshipDetailsView};
+
+function generateStarshipDetailsView(){
+    
+}

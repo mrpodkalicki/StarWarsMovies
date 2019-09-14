@@ -1,5 +1,5 @@
 
-export { getFilms, getFilm, SearchingMovies, getPlanets, getPlanet, getPeople, getCharacter, getVehicles, getVehicle};
+export { getFilms, getFilm, SearchingMovies, getPlanets, getPlanet, getPeople, getCharacter, getVehicles, getVehicle, getStarship, getStarships};
 
 //Get movies and push into array
 async function getFilms(){

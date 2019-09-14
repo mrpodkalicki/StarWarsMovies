@@ -1,0 +1,5 @@
+export {generateCharacterDetailsView};
+
+function generateCharacterDetailsView(){
+
+}

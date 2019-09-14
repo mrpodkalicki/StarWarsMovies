@@ -2,15 +2,20 @@ export {generateElementsList};
 
 async function generateElementsList(elemList, getAllCallback, showElementCallback){
     const elems = [];
-    
+
+    const loading = document.querySelector(".loading");
+    loading.style.display = "block";
+
     const elArr = await findElementsNames(elemList, getAllCallback);
     elArr.forEach(el => {
         const elButton = document.createElement("div");
-        elButton.classList = "element col-xs-12 col-sm-6 col-lg-4 col-xl-3";
+        elButton.classList = "element col-xs-12 col-lg-6 col-xl-4";
         elButton.innerHTML = el.name;
         elButton.addEventListener("click", showElementCallback);
         elems.push(elButton);
     })
+
+    loading.style.display = "none";
 
     return elems;
 }
