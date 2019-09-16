@@ -1,4 +1,4 @@
-import { insideMenu, render } from "./UILayer";
+import { insideMenu, render, nothing } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getPlanet, getFilms } from "./SWAPIService";
 import { generateFilmDetailsView } from "./FilmDetailsView";
@@ -105,7 +105,15 @@ async function generatePlanetDetailsView(planet) {
 }
 
 async function showResidents(planet) {
+    const loading = document.querySelector(".loading");
+    if (loading.style.display != "none") {
+        return;
+    }
+
     const chosenCategory = document.querySelector(".categoryName");
+    if (chosenCategory.innerHTML == "Residents:") {
+        return;
+    }
     chosenCategory.innerHTML = "Residents:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
@@ -114,10 +122,20 @@ async function showResidents(planet) {
         links.appendChild(resident);
     });
 
+    nothing(links);
 }
 
 async function showFilms(planet) {
+    const loading = document.querySelector(".loading");
+    if (loading.style.display != "none") {
+        return;
+    }
+    
     const chosenCategory = document.querySelector(".categoryName");
+    if (chosenCategory.innerHTML == "Films:") {
+        return;
+    }
+  
     chosenCategory.innerHTML = "Films:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
@@ -125,4 +143,5 @@ async function showFilms(planet) {
     films.forEach(film => {
         links.appendChild(film);
     });
+    nothing(links);
 }

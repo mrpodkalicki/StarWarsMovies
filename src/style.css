@@ -531,6 +531,10 @@ nav {
     background-image: url("images/pngguru.com-id-kfsny.png");
 }
 
+.pilotsCategory{
+    background-image: url("images/luke-skywalker-boba-fett-anakin-skywalker-rey-wedge-antilles-pilot.png");
+}
+
 .element, .loading{
     text-align: center;
     font-size: 1.5rem;
@@ -540,4 +544,10 @@ nav {
 
 .element:hover {
     color: var(--lightsaber-green);
+}
+
+.nothing{
+    margin: auto;
+    font-size: 2rem;
+    font-family: Star-Jedi;
 }

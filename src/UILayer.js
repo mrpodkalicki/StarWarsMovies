@@ -1,9 +1,8 @@
 // ******* UI Layer *********
-import { getFilms, getFilm, SearchingMovies, getPlanets, getPlanet, getPeople, getCharacter, getVehicles, getVehicle } from "./SWAPIService.js";
-import { generateElementsList } from "./elementsList.js";
+import { getFilms, SearchingMovies } from "./SWAPIService.js";
 import {generateFilmDetailsView} from "./FilmDetailsView";
 
-export { insideMenu, render};
+export { insideMenu, render, nothing};
 
 // DOM nodes
 let DOMallElem = document.querySelector(".b-body__content");
@@ -145,6 +144,15 @@ function insideMenu(options) {
         opt.innerHTML = option;
         navMenu.appendChild(opt);
     })
+}
+
+function nothing(links){
+    const nothing = document.createElement("div");
+    nothing.classList = "nothing";
+    nothing.innerHTML = "The list is empty. Nothing to display";
+    if(links.innerHTML == ""){
+        links.appendChild(nothing);
+    }
 }
 
 render();

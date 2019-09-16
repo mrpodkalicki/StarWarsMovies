@@ -1,4 +1,4 @@
-import { insideMenu, render } from "./UILayer";
+import { insideMenu, render, nothing } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getStarships, getVehicles, getPlanets, getFilm, getFilms } from "./SWAPIService";
 import { generatePlanetDetailsView } from "./PlanetDetailsView";
@@ -19,6 +19,7 @@ async function generateFilmDetailsView(film) {
     if (view) {
         body.removeChild(view);
     }
+
     insideMenu(["Characters", "Starships", "Vehicles", "Planets"]);
     const back = document.querySelector(".backButton");
     const main = document.querySelector(".mainButton");
@@ -100,7 +101,16 @@ async function generateFilmDetailsView(film) {
 }
 
 async function showCharacters(film) {
+    const loading = document.querySelector(".loading");
+    if (loading.style.display != "none") {
+        return;
+    }
+
     const chosenCategory = document.querySelector(".categoryName");
+    if (chosenCategory.innerHTML == "Characters:") {
+        return;
+    }
+
     chosenCategory.innerHTML = "Characters:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
@@ -108,11 +118,20 @@ async function showCharacters(film) {
     characters.forEach(character => {
         links.appendChild(character);
     });
-
+    nothing(links);
 }
 
 async function showStarships(film) {
+    const loading = document.querySelector(".loading");
+    if (loading.style.display != "none") {
+        return;
+    }
+
     const chosenCategory = document.querySelector(".categoryName");
+    if (chosenCategory.innerHTML == "Starships:") {
+        return;
+    }
+  
     chosenCategory.innerHTML = "Starships:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
@@ -120,10 +139,19 @@ async function showStarships(film) {
     starships.forEach(starship => {
         links.appendChild(starship);
     });
+    nothing(links);
 }
 
 async function showVehicles(film) {
+    const loading = document.querySelector(".loading");
+    if (loading.style.display != "none") {
+        return;
+    }
+
     const chosenCategory = document.querySelector(".categoryName");
+    if (chosenCategory.innerHTML == "Vehicles:") {
+        return;
+    }
     chosenCategory.innerHTML = "Vehicles:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
@@ -131,11 +159,20 @@ async function showVehicles(film) {
     vehicles.forEach(vehicle => {
         links.appendChild(vehicle);
     });
-
+    nothing(links);
 }
 
 async function showPlanets(film) {
+    const loading = document.querySelector(".loading");
+    if (loading.style.display != "none") {
+        return;
+    }
+
     const chosenCategory = document.querySelector(".categoryName");
+    if (chosenCategory.innerHTML == "Planets:") {
+        return;
+    }
+
     chosenCategory.innerHTML = "Planets:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
@@ -143,4 +180,5 @@ async function showPlanets(film) {
     planets.forEach(planet => {
         links.appendChild(planet);
     });
+    nothing(links);
 }
