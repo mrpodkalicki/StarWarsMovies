@@ -4,7 +4,7 @@ import {generateFilmDetailsView} from "./FilmDetailsView";
 import "./style.css";
 import video from './movie/Starfield_Fly_Through.mp4';
 
-export { insideMenu, render, nothing};
+export { insideMenu, render, nothing, markSelected};
 
 // DOM nodes
 let DOMallElem = document.querySelector(".b-body__content");
@@ -155,6 +155,14 @@ function nothing(links){
     if(links.innerHTML == ""){
         links.appendChild(nothing);
     }
+}
+
+function markSelected(selected){
+    const navOption = document.querySelector(".selected");
+    if(navOption){
+        navOption.classList.remove("selected");
+    }
+    selected.classList.add("selected");
 }
 
 render();

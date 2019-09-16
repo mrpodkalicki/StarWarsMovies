@@ -442,6 +442,11 @@ nav {
     text-shadow: 0 0 10px var(--lightsaber-green);
 }
 
+.selected{
+    color: var(--dark-side-red);
+    text-shadow: 0 0 10px var(--dark-side-red);
+}
+
 .title {
     text-align: center;
     font-size: 2.5rem;

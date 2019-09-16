@@ -1,4 +1,4 @@
-import { insideMenu, render, nothing } from "./UILayer";
+import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getStarships, getVehicles, getPlanets, getFilm, getFilms } from "./SWAPIService";
 import { generatePlanetDetailsView } from "./PlanetDetailsView";
@@ -105,6 +105,7 @@ async function showCharacters(film) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".CharactersButton"));
 
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Characters:") {
@@ -126,6 +127,7 @@ async function showStarships(film) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".StarshipsButton"));
 
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Starships:") {
@@ -147,6 +149,7 @@ async function showVehicles(film) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".VehiclesButton"));
 
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Vehicles:") {
@@ -167,6 +170,7 @@ async function showPlanets(film) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".PlanetsButton"));
 
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Planets:") {

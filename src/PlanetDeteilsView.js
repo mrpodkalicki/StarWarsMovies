@@ -1,5 +1,0 @@
-export {generatePlanetDetailsView};
-
-function generatePlanetDetailsView(){
-    
-}

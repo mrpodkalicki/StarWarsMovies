@@ -1,4 +1,4 @@
-import { insideMenu, render, nothing } from "./UILayer";
+import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getFilms, getStarship } from "./SWAPIService";
 import { generateFilmDetailsView } from "./FilmDetailsView";
@@ -129,6 +129,7 @@ async function showPilots(starship) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".PilotsButton"));
 
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Pilots:") {
@@ -149,6 +150,7 @@ async function showFilms(starship) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".FilmsButton"));
     
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Films:") {
@@ -157,7 +159,7 @@ async function showFilms(starship) {
     chosenCategory.innerHTML = "Films:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const films = await generateElementsList(planet.films, getFilms, generateFilmDetailsView);
+    const films = await generateElementsList(starship.films, getFilms, generateFilmDetailsView);
     films.forEach(film => {
         links.appendChild(film);
     });

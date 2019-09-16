@@ -1,4 +1,4 @@
-import { insideMenu, render, nothing } from "./UILayer";
+import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getPlanet, getFilms } from "./SWAPIService";
 import { generateFilmDetailsView } from "./FilmDetailsView";
@@ -109,6 +109,7 @@ async function showResidents(planet) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".ResidentsButton"));
 
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Residents:") {
@@ -130,6 +131,7 @@ async function showFilms(planet) {
     if (loading.style.display != "none") {
         return;
     }
+    markSelected(document.querySelector(".FilmsButton"));
     
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Films:") {
