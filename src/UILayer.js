@@ -1,6 +1,8 @@
 // ******* UI Layer *********
 import { getFilms, SearchingMovies } from "./SWAPIService.js";
 import {generateFilmDetailsView} from "./FilmDetailsView";
+import "./style.css";
+import video from './movie/Starfield_Fly_Through.mp4';
 
 export { insideMenu, render, nothing};
 

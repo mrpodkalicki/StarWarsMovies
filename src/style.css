@@ -301,7 +301,6 @@
     -moz-box-shadow: 5px 5px 5px 1px var(--dark-side-red);
     box-shadow: 10px 5px 10px 1px var(--dark-side-red);
 }
-}
 
 .card__bacground--transparency {
     position: absolute;
