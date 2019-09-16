@@ -11,7 +11,7 @@ async function generateElementsList(elemList, getAllCallback, showElementCallbac
         const elButton = document.createElement("div");
         elButton.classList = "element col-xs-12 col-lg-6 col-xl-4";
         elButton.innerHTML = el.name;
-        elButton.addEventListener("click", showElementCallback);
+        elButton.addEventListener("click", () => showElementCallback(el.url));
         elems.push(elButton);
     })
 
@@ -27,7 +27,7 @@ async function findElementsNames(elemList, callback){
     elemList.forEach(element => {
         let found = allElements.find(el => el.url == element);
         list.push({
-            name: found.name,
+            name: found.name || found.title,
             url: element
         })
     });

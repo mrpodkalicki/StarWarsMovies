@@ -1,7 +1,7 @@
 import { insideMenu, render } from "./UILayer";
 import { generateElementsList } from "./elementsList";
-import { getPeople, getStarships, getVehicles, getPlanets } from "./SWAPIService";
-import { generatePlanetDetailsView } from "./PlanetDeteilsView";
+import { getPeople, getStarships, getVehicles, getPlanets, getFilm, getFilms } from "./SWAPIService";
+import { generatePlanetDetailsView } from "./PlanetDetailsView";
 import { generateCharacterDetailsView } from "./CharacterDetailsView";
 import { generateStarshipDetailsView } from "./StarshipDetailsView";
 import { generateVehicleDetailsView } from "./VehicleDetailsView";
@@ -10,7 +10,15 @@ import { backFunction } from "./BackFunction";
 
 export { generateFilmDetailsView };
 
-function generateFilmDetailsView(film) {
+async function generateFilmDetailsView(film) {
+    if (!(film instanceof Object)) {
+        film = await getFilm(film);
+    }
+    let view = document.querySelector(".view");
+    const body = document.querySelector("body");
+    if (view) {
+        body.removeChild(view);
+    }
     insideMenu(["Characters", "Starships", "Vehicles", "Planets"]);
     const back = document.querySelector(".backButton");
     const main = document.querySelector(".mainButton");
@@ -26,7 +34,7 @@ function generateFilmDetailsView(film) {
     veh.addEventListener("click", () => showVehicles(film));
     plan.addEventListener("click", () => showPlanets(film));
 
-    const view = document.querySelector(".view");
+    view = document.querySelector(".view");
 
     const title = document.createElement("header");
     title.classList = "title";

@@ -82,7 +82,7 @@
 }
 
 .header_caption-first {
-    font-family: Star-Jedi;
+    font-family: Star-Jedi-Hol;
     font-size: 3rem;
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #2999D4;
@@ -110,7 +110,7 @@
 }
 
 .header__caption-third {
-    font-family: Star-Jedi;
+    font-family: Star-Jedi-Hol;
     font-size: 2rem;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #ffffff;
@@ -273,19 +273,34 @@
     background: white;
     position: relative;
     background-color: black;
-    border: solid white 0.5px;
+    border: solid white 1px;
     box-sizing: border-box;
     padding: 1rem;
     width: 100%;
     background-size: cover;
     box-shadow: #000000, 5px;
     background-position: center;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.card:hover {
+    transform: scale(1.1);
+    border: solid var(--dark-side-red) 1px;
 }
 
 .card--shadow {
     -webkit-box-shadow: 5px 5px 5px 1px rgba(255, 248, 248, 0.75);
     -moz-box-shadow: 5px 5px 5px 1px rgba(255, 255, 255, 0.75);
     box-shadow: 10px 5px 10px 1px rgba(255, 255, 255, 0.75);
+    transition: all 0.2s ease-in-out;
+}
+
+.card--shadow:hover{
+    -webkit-box-shadow: 5px 5px 5px 1px var(--dark-side-red);
+    -moz-box-shadow: 5px 5px 5px 1px var(--dark-side-red);
+    box-shadow: 10px 5px 10px 1px var(--dark-side-red);
+}
 }
 
 .card__bacground--transparency {
@@ -468,6 +483,9 @@ nav {
     text-align: center;
     padding: 50px 0;
     margin: 50px 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
     transition: all 0.2s ease-in-out;
 }
 
@@ -491,30 +509,26 @@ nav {
 
 .charactersCategory {
     background-image: url("images/star-wars-2463926_1920.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
 }
 
 .starshipsCategory {
     background-image: url("images/spaceship-2844248_1280.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
 }
 
 .vehiclesCategory {
     background-image: url("images/starwars_PNG46.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
 }
 
 .planetsCategory {
     background-image: url("images/isolated-1513342_1920.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position-x: center;
+}
+
+.residentsCategory{
+    background-image: url("images/kisspng-luke-skywalker-stormtrooper-jar-jar-binks-han-solo-5af2ce75eb0906.5083965915258620059627.png");
+}
+
+.filmsCategory{
+    background-image: url("images/pngguru.com-id-kfsny.png");
 }
 
 .element, .loading{
