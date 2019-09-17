@@ -114,19 +114,19 @@ async function generateCharacterDetailsView(character) {
     view.appendChild(links);
 
     const starshipsCategory = document.createElement("div");
-    starshipsCategory.classList = "col-12 col-sm-6 starshipsCategory category";
+    starshipsCategory.classList = "col-12 col-md-4 starshipsCategory category";
     starshipsCategory.innerHTML = "<span class='outline'><span class='black'>starships</span>starships</span>";
     links.appendChild(starshipsCategory);
     starshipsCategory.addEventListener("click", () => showStarships(character));
 
     const vehiclesCategory = document.createElement("div");
-    vehiclesCategory.classList = "col-12 col-sm-6 filmsCategory category";
+    vehiclesCategory.classList = "col-12 col-md-4 filmsCategory category";
     vehiclesCategory.innerHTML = "<span class='outline'><span class='black'>vehicles</span>vehicles</span>";
     links.appendChild(vehiclesCategory);
     vehiclesCategory.addEventListener("click", () => showVehicles(character));
 
     const filmsCategory = document.createElement("div");
-    filmsCategory.classList = "col-12 col-sm-6 vehiclesCategory category";
+    filmsCategory.classList = "col-12 col-md-4 vehiclesCategory category";
     filmsCategory.innerHTML = "<span class='outline'><span class='black'>films</span>films</span>";
     links.appendChild(filmsCategory);
     filmsCategory.addEventListener("click", () => showFilms(character));
