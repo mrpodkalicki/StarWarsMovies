@@ -102,7 +102,7 @@ $searchButton.addEventListener("click", () => {
         if (resolve == "Nothing finded") {
             $imageMainSect.setAttribute("style", "z-index: -2;");
             $moviesList.innerHTML = "";
-            $nothingFinded.innerText = "nothig Finded"
+            $nothingFinded.innerText = "Nothing Found"
         } else {
             movies = resolve;
             render();

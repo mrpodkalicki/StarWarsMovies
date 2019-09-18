@@ -1,10 +1,10 @@
-
 import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getCharacter, getVehicles, getFilms, getStarships } from "./SWAPIService";
 import { generateFilmDetailsView } from "./FilmDetailsView";
 import { generateVehicleDetailsView } from "./VehicleDetailsView";
 import { generateStarshipDetailsView } from "./StarshipDetailsView";
+import { generatePlanetDetailsView } from "./PlanetDetailsView";
 import { backFunction } from "./BackFunction";
 
 export { generateCharacterDetailsView };
@@ -88,6 +88,7 @@ async function generateCharacterDetailsView(character) {
         const homeW = json.name;
         homeworld.innerHTML = `<header>Homeworld:</header><span>${homeW}</span>`
         characterInfo.appendChild(homeworld);
+        homeworld.addEventListener("click", () => generatePlanetDetailsView(json))
     }
     requestHomeworld();
 
@@ -101,17 +102,6 @@ async function generateCharacterDetailsView(character) {
         characterInfo.appendChild(specie);
     }
     specieHomeworld();
-
-
-    const created = document.createElement("div");
-    created.classList = "col-12 col-md-6 col-xl-3 info";
-    created.innerHTML = `<header>Created:</header><span>${character.created}</span>`
-    characterInfo.appendChild(created);
-
-    const edited = document.createElement("div");
-    edited.classList = "col-12 col-md-6 col-xl-3 info";
-    edited.innerHTML = `<header>Edited:</header><span>${character.edited}</span>`
-    characterInfo.appendChild(edited);
 
     const chosenCategory = document.createElement("div");
     chosenCategory.classList = "categoryName";
@@ -208,4 +198,3 @@ async function showVehicles(character) {
     });
     nothing(links);
 }
-
