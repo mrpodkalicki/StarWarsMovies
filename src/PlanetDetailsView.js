@@ -1,13 +1,13 @@
 import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getPlanet, getFilms } from "./SWAPIService";
-import { generateFilmDetailsView } from "./FilmDetailsView";
+import {generateFilmDetailsViewHeader}from "./FilmDetailsView";
 import { generateCharacterDetailsView } from "./CharacterDetailsView";
-import { backFunction } from "./BackFunction";
-
+import { backToLastView,addWebBtnBAck,addDetailsURL } from "./BackFunction";
 export { generatePlanetDetailsView };
 
-async function generatePlanetDetailsView(planet) {
+async function generatePlanetDetailsView(planet,film) {
+    addDetailsURL(planet);
     if (!(planet instanceof Object)) {
         planet = await getPlanet(planet);
     }
@@ -20,8 +20,11 @@ async function generatePlanetDetailsView(planet) {
     const main = document.querySelector(".mainButton");
     const res = document.querySelector(".ResidentsButton");
     const films = document.querySelector(".FilmsButton");
-
-    back.addEventListener("click", backFunction);
+    back.addEventListener("click",()=>{ 
+        let backWeb=addWebBtnBAck();
+        if(backWeb){
+            backToLastView(backWeb, film);
+        }});
     main.addEventListener("click", render);
     res.addEventListener("click", () => showResidents(planet));
     films.addEventListener("click", () => showFilms(planet));
@@ -118,7 +121,7 @@ async function showResidents(planet) {
     chosenCategory.innerHTML = "Residents:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const residents = await generateElementsList(planet.residents, getPeople, generateCharacterDetailsView);
+    const residents = await generateElementsList(planet.residents, getPeople, generateCharacterDetailsView,planet,"PlanetDetails:");
     residents.forEach(resident => {
         links.appendChild(resident);
     });
@@ -141,7 +144,7 @@ async function showFilms(planet) {
     chosenCategory.innerHTML = "Films:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const films = await generateElementsList(planet.films, getFilms, generateFilmDetailsView);
+    const films = await generateElementsList(planet.films, getFilms, generateFilmDetailsViewHeader, planet, "PlanetDetails:");
     films.forEach(film => {
         links.appendChild(film);
     });

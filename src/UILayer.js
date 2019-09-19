@@ -1,10 +1,11 @@
 // ******* UI Layer *********
 import { getFilms, SearchingMovies } from "./SWAPIService.js";
-import {generateFilmDetailsView} from "./FilmDetailsView";
+import {generateFilmDetailsViewHeader,generateFilmDetailsViewCategory} from "./FilmDetailsView";
 import "./style.css";
+import {backFunction} from "./BackFunction.js"
 import video from './movie/Starfield_Fly_Through.mp4';
 
-export { insideMenu, render, nothing, markSelected};
+export { insideMenu, render, nothing, markSelected,takeElementDOM};
 
 // DOM nodes
 let DOMallElem = document.querySelector(".b-body__content");
@@ -14,11 +15,12 @@ let $movieInput = DOMallElem.querySelector("#movie-input");
 let $searchButton = DOMallElem.querySelector("#movie-search");
 let $nothingFinded = DOMallElem.querySelector(".main-section__content-input__caption-nothing-finded");
 let $imageMainSect = DOMallElem.querySelector(".b-main__image-second--back-img");
+let $inputMainView = DOMallElem.querySelector(".movie-search-input");
 
 const createCardTitle = (title) => {
     const divCardContent = document.createElement("div");
     divCardContent.className = "b-card__content b-card__header b-card__header--position";
-    const h1 = document.createElement("h2");
+    const h1 = document.createElement("h1");
     h1.innerText = title;
     h1.className = "b-card__header__caption";
     divCardContent.appendChild(h1);
@@ -63,8 +65,29 @@ const createMovieCard = (movie, classNamebackImange) => {
     card.appendChild(createCardContent("Director:", director, classNameDivDirector, directClassPheader, directClassPName));
     card.appendChild(createCardContent("Producer:", producer, classNameDivProducer, producerClassPheader, producerClassPName));
     card.appendChild(createCardContent("Realese Date:", realaseDate, classNameDivDate, dateClassPheader, dateClassPName));
-    card.addEventListener("click", () => generateFilmDetailsView(movie));
+    card.addEventListener("click", () => {
+        let view=takeElementDOM(".b-body");
+            if(view){
+                let viewHTML=view.innerHTML;
+                const filmDetailsHeader = generateFilmDetailsViewHeader(movie);
+                if (filmDetailsHeader){
+                    const filmDetailsCategory = generateFilmDetailsViewCategory(movie);
+                    if (filmDetailsHeader && filmDetailsCategory) {
+                        const backBTN = takeElementDOM(".backButton");
+                        backFunction(viewHTML);
+
+                    };
+                }
+                
+            };
+
+            
+       
+    });
     return card
+};
+const takeElementDOM=(ClassNAme)=> {
+    return document.querySelector(ClassNAme);
 };
 // UI functions
 let movies = [];
@@ -97,15 +120,18 @@ async function render() {
     $nothingFinded.innerText = "";
     $moviesList.appendChild(listCard);
 };
+$inputMainView.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        $searchButton.click();
+    }
+});
 $searchButton.addEventListener("click", () => {
+
     SearchingMovies($movieInput.value).then(resolve => {
         if (resolve == "Nothing finded") {
-            $imageMainSect.setAttribute("style", "display:none;");
+            $imageMainSect.setAttribute("style", "display: none;");
             $moviesList.innerHTML = "";
-
-            $nothingFinded.innerText = "nothing found"
-
-
+            $nothingFinded.innerText = "nothig Finded"
         } else {
             movies = resolve;
             render();
@@ -154,6 +180,7 @@ function insideMenu(options) {
 function nothing(links){
     const nothing = document.createElement("div");
     nothing.classList = "nothing";
+
     nothing.innerHTML = "The list is empty. Nothing to display";
     if(links.innerHTML == ""){
         links.appendChild(nothing);
@@ -161,11 +188,15 @@ function nothing(links){
 }
 
 function markSelected(selected){
+   
     const navOption = document.querySelector(".selected");
     if(navOption){
         navOption.classList.remove("selected");
     }
-    selected.classList.add("selected");
+    if (selected){
+        selected.classList.add("selected");
+    }
+    
 }
 
 render();

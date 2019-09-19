@@ -1,22 +1,23 @@
+
+import {generateFilmDetailsViewHeader} from "./FilmDetailsView";
+import { generateVehicleDetailsView } from "./VehicleDetailsView";
+import { generateStarshipDetailsView } from "./StarshipDetailsView";
+import { backToLastView,addWebBtnBAck,addDetailsURL } from "./BackFunction";
 import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getCharacter, getVehicles, getFilms, getStarships } from "./SWAPIService";
-import { generateFilmDetailsView } from "./FilmDetailsView";
-import { generateVehicleDetailsView } from "./VehicleDetailsView";
-import { generateStarshipDetailsView } from "./StarshipDetailsView";
 import { generatePlanetDetailsView } from "./PlanetDetailsView";
-import { backFunction } from "./BackFunction";
-
 export { generateCharacterDetailsView };
 
-async function generateCharacterDetailsView(character) {
+
+async function generateCharacterDetailsView(character,film) {
+     addDetailsURL(character);
     if (!(character instanceof Object)) {
         character = await getCharacter(character);
     }
     let view = document.querySelector(".view");
     const body = document.querySelector("body");
     body.removeChild(view);
-
     insideMenu(["Films", "Vehicles", "Starships"]);
     const back = document.querySelector(".backButton");
     const main = document.querySelector(".mainButton");
@@ -24,7 +25,11 @@ async function generateCharacterDetailsView(character) {
     const veh = document.querySelector(".VehiclesButton");
     const ships = document.querySelector(".StarshipsButton");
 
-    back.addEventListener("click", backFunction);
+    back.addEventListener("click", () => {
+    let backWeb = addWebBtnBAck();
+    if (backWeb) {
+        backToLastView(backWeb, film);
+    }});
     main.addEventListener("click", render);
     films.addEventListener("click", () => showFilms(character));
     veh.addEventListener("click", () => showVehicles(character));
@@ -77,9 +82,6 @@ async function generateCharacterDetailsView(character) {
     gender.classList = "col-12 col-md-6 col-xl-3 info";
     gender.innerHTML = `<header>Gender:</header><span>${character.gender}</span>`
     characterInfo.appendChild(gender);
-
-   
-    
     const requestHomeworld = async () => {
         const homeworld = document.createElement("div");
         homeworld.classList = "col-12 col-md-6 col-xl-3 info";
@@ -149,7 +151,7 @@ async function showStarships(character) {
     chosenCategory.innerHTML = "Starships:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const starships = await generateElementsList(character.starships, getStarships, generateStarshipDetailsView);
+    const starships = await generateElementsList(character.starships, getStarships, generateStarshipDetailsView, character, "CharactersDetails:");
     starships.forEach(starship => {
         links.appendChild(starship);
     });
@@ -171,7 +173,7 @@ async function showFilms(planet) {
     chosenCategory.innerHTML = "Films:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const films = await generateElementsList(planet.films, getFilms, generateFilmDetailsView);
+    const films = await generateElementsList(planet.films, getFilms, generateFilmDetailsViewHeader, planet, "CharactersDetails:");
     films.forEach(film => {
         links.appendChild(film);
     });
@@ -184,6 +186,7 @@ async function showVehicles(character) {
         return;
     }
     markSelected(document.querySelector(".VehiclesButton"));
+
     const chosenCategory = document.querySelector(".categoryName");
     if (chosenCategory.innerHTML == "Vehicles:") {
         return;
@@ -192,9 +195,9 @@ async function showVehicles(character) {
     chosenCategory.innerHTML = "Vehicles:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const vehicles = await generateElementsList(character.vehicles, getVehicles, generateVehicleDetailsView);
+    const vehicles = await generateElementsList(character.vehicles, getVehicles, generateVehicleDetailsView, character, "CharactersDetails:");
     vehicles.forEach(vehicle => {
-        links.appendChild(vehicles);
+        links.appendChild(vehicle);
     });
     nothing(links);
 }

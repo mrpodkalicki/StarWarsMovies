@@ -1,6 +1,10 @@
+import {addToarray,addDetailsURL} from "./BackFunction";
+import {
+    generateFilmDetailsViewCategory, generateFilmDetailsViewHeader
+} from "./FilmDetailsView";
 export {generateElementsList};
 
-async function generateElementsList(elemList, getAllCallback, showElementCallback){
+async function generateElementsList(elemList, getAllCallback, showElementCallbackHeader,films, nameWeb) {
     const elems = [];
 
     const loading = document.querySelector(".loading");
@@ -11,7 +15,16 @@ async function generateElementsList(elemList, getAllCallback, showElementCallbac
         const elButton = document.createElement("div");
         elButton.classList = "element col-xs-12 col-lg-6 col-xl-4";
         elButton.innerHTML = el.name;
-        elButton.addEventListener("click", () => showElementCallback(el.url));
+        elButton.addEventListener("click", () => {
+                addToarray(nameWeb);
+                const filmDetailsHearder=showElementCallbackHeader(el.url,films);
+                if (generateFilmDetailsViewHeader == showElementCallbackHeader){
+                    if (filmDetailsHearder){
+                        generateFilmDetailsViewCategory(el.url)
+
+                    }
+                }
+        });
         elems.push(elButton);
     })
 

@@ -65,11 +65,7 @@ body {
     width: 100%;
 }
 
-@media (min-width:2000px) {
-    .b-body__content {
-        width: 70%;
-    }
-}
+
 h1{
     line-height: 0.7;
 }
@@ -79,12 +75,10 @@ h1{
     }
 }
 
-
-
 .header {
     text-align: center;
     box-sizing: border-box;
-    margin: 1rem;
+
     word-wrap: break-word;
     display: flex;
     flex-direction: column;
@@ -115,7 +109,7 @@ h1{
 }
 
 .b-main__image-first--position {
-    top: 5%;
+    top: 1%;
     left: 2%;
 }
 
@@ -131,8 +125,8 @@ h1{
 }
 
 .b-main__image-second--position {
-    top:44rem;
-    left: 35%;
+    top:50rem;
+    left: 42%;
 }
 @media (min-width:1480px)  {
     .b-main__image-second--position {
@@ -611,6 +605,14 @@ h1{
     -webkit-box-shadow: 5px 5px 5px 1px rgba(255, 248, 248, 0.75);
     -moz-box-shadow: 5px 5px 5px 1px rgba(255, 255, 255, 0.75);
     box-shadow: 10px 5px 10px 1px rgba(255, 255, 255, 0.75);
+    transition: all 0.2s ease-in-out;
+}
+
+.card--shadow:hover{
+    -webkit-box-shadow: 5px 5px 5px 1px var(--dark-side-red);
+    -moz-box-shadow: 5px 5px 5px 1px var(--dark-side-red);
+    box-shadow: 10px 5px 10px 1px var(--dark-side-red);
+
 }
 
 .card--shadow:hover {
@@ -932,6 +934,12 @@ nav {
 .navElement:hover {
     color: var(--lightsaber-green);
     text-shadow: 0 0 10px var(--lightsaber-green);
+}
+
+
+.selected{
+    color: var(--dark-side-red);
+    text-shadow: 0 0 10px var(--dark-side-red);
 }
 
 .title {

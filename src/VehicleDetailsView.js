@@ -1,13 +1,13 @@
 import { insideMenu, render, nothing, markSelected } from "./UILayer";
 import { generateElementsList } from "./elementsList";
 import { getPeople, getFilms, getVehicle } from "./SWAPIService";
-import { generateFilmDetailsView } from "./FilmDetailsView";
+import { generateFilmDetailsViewHeader } from "./FilmDetailsView";
 import { generateCharacterDetailsView } from "./CharacterDetailsView";
-import { backFunction } from "./BackFunction";
-
+import { backToLastView,addWebBtnBAck,addDetailsURL } from "./BackFunction";
 export {generateVehicleDetailsView};
 
-async function generateVehicleDetailsView(vehicle){
+async function generateVehicleDetailsView(vehicle,film){
+    addDetailsURL(vehicle);
     if (!(vehicle instanceof Object)) {
         vehicle = await getVehicle(vehicle);
     }
@@ -21,7 +21,12 @@ async function generateVehicleDetailsView(vehicle){
     const pil = document.querySelector(".PilotsButton");
     const films = document.querySelector(".FilmsButton");
 
-    back.addEventListener("click", backFunction);
+    back.addEventListener("click", () => {
+    let backWeb = addWebBtnBAck();
+    if (backWeb) {
+        backToLastView(backWeb, film);
+    }
+    });
     main.addEventListener("click", render);
     pil.addEventListener("click", () => showPilots(vehicle));
     films.addEventListener("click", () => showFilms(vehicle));
@@ -128,7 +133,7 @@ async function showPilots(vehicle) {
     chosenCategory.innerHTML = "Pilots:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const pilots = await generateElementsList(vehicle.pilots, getPeople, generateCharacterDetailsView);
+    const pilots = await generateElementsList(vehicle.pilots, getPeople, generateCharacterDetailsView, vehicle, "VehicleDetails:");
     pilots.forEach(pilot => {
         links.appendChild(pilot);
     });
@@ -149,7 +154,7 @@ async function showFilms(vehicle) {
     chosenCategory.innerHTML = "Films:";
     const links = document.querySelector(".links");
     links.innerHTML = "";
-    const films = await generateElementsList(vehicle.films, getFilms, generateFilmDetailsView);
+    const films = await generateElementsList(vehicle.films, getFilms, generateFilmDetailsViewHeader, vehicle, "VehicleDetails:");
     films.forEach(film => {
         links.appendChild(film);
     });
