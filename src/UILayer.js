@@ -18,7 +18,7 @@ let $imageMainSect = DOMallElem.querySelector(".b-main__image-second--back-img")
 const createCardTitle = (title) => {
     const divCardContent = document.createElement("div");
     divCardContent.className = "b-card__content b-card__header b-card__header--position";
-    const h1 = document.createElement("h1");
+    const h1 = document.createElement("h2");
     h1.innerText = title;
     h1.className = "b-card__header__caption";
     divCardContent.appendChild(h1);
@@ -100,9 +100,12 @@ async function render() {
 $searchButton.addEventListener("click", () => {
     SearchingMovies($movieInput.value).then(resolve => {
         if (resolve == "Nothing finded") {
-            $imageMainSect.setAttribute("style", "z-index: -2;");
+            $imageMainSect.setAttribute("style", "display:none;");
             $moviesList.innerHTML = "";
-            $nothingFinded.innerText = "Nothing Found"
+
+            $nothingFinded.innerText = "nothing found"
+
+
         } else {
             movies = resolve;
             render();
